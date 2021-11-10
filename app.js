@@ -6,6 +6,7 @@ const port = 5000;
 
 //Template Engine
 app.set('view engine', 'ejs');
+
 //middleware
 app.use(express.static('public'));
 
