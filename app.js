@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ejs = require('ejs');
 const path = require('path');
 const app = express();
-const Blog = require('./models/Blog');
+const Post = require('./models/Post');
 
 const port = 5000;
 
@@ -23,10 +23,16 @@ app.use(express.json());
 
 // Routes
 app.get('/', async (req, res) => {
-  const blogs = await Blog.find({});
-  res.render('index',{blogs});
+  const posts = await Post.find({});
+  res.render('index',{posts});
 });
 
+app.get('/posts/:id', async (req, res) => {
+  const post = await Post.findById(req.params.id)
+  res.render('post', {
+    post
+  })
+});
 
 app.get('/about', (req, res) => {
   res.render('about');
@@ -36,8 +42,8 @@ app.get('/add', (req, res) => {
   res.render('add');
 });
 
-app.post('/blogs', async (req, res) => { // yeni yazı eklendiğinde gelen veriyi yakalamak için post işlemi yapıyoruz.
-  await Blog.create(req.body)
+app.post('/posts', async (req, res) => { // yeni yazı eklendiğinde gelen veriyi yakalamak için post işlemi yapıyoruz.
+  await Post.create(req.body)
   res.redirect('/')
 });
 
