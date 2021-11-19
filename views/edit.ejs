@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('partials/_header') -%>
+
+<body>
+
+  <%- include('partials/_nav') -%>
+  <!-- Page Header -->
+  <header class="masthead add-image" style="background-image: url('/img/contact-bg.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Add New Post</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form method="post" action="/posts/<%= post._id %>?_method=PUT" enctype="application/x-www-form-urlencoded">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Post Title</label>
+              <input type="text" name="title" class="form-control" value="<%= post.title %>" required>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Post Detail</label>
+              <textarea rows="8" name="detail" class="form-control" placeholder="Your Message" required></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="btn-group d-inline-block ml-5" role="group" aria-label="Basic example">
+            <a type="submit" class="btn btn-primary">UPDATE</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <%- include('partials/_footer') -%>
+
+</body>
+
+</html>
